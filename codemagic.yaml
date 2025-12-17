@@ -1,0 +1,15 @@
+workflows:
+  android-debug:
+    name: بناء APK للتجربة
+    environment:
+      flutter: stable
+    scripts:
+      - name: قبول تراخيص Android SDK
+        script: |
+          yes | sdkmanager --licenses || true
+      - name: جلب تبعيات المشروع
+        script: flutter pub get
+      - name: بناء APK للتصحيح (Debug)
+        script: flutter build apk --debug
+    artifacts:
+      - build/**/outputs/**/*.apk
